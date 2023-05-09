@@ -1,0 +1,75 @@
+* MR 98 - Triangulum Server Mode
+** Review 1
+*** README.org
+
+L18-81 - I would say the order of this is a bit confusing. Since all
+of these sections rely on configuration `config.edn` file, we should
+probably describe that first and then share how you can configure the
+application's handlers, mail, workers, database, etc.
+
+L24 - Please provide an example for handler/response-type/data-response.
+
+L26 - The title 'workers' doesn't seem to match the content. Please correct the title and/or content.
+
+L30 - Correct variable highlighting (~:tags-url~)
+
+L30 - Can you provide an example ~client.init~ that can be modeled after?
+
+L31 - Can you provide a sample mail configuration? 
+
+*** deps.example.edn
+
+L1 - Should we also include an example with ~src/cljs~?
+
+L13 - Misaligned.
+
+L18 - This should be removed or commented out, since this command doesn't exist in Triangulum yet. See [[https://github.com/sig-gis/triangulum/pull/89][PR 89]] for the latest on this.
+
+*** src/triangulu/config.clj
+
+Add specs for any new keys.
+
+*** src/triangulum/database.clj
+
+Undo this change. We tend to put ~:imports~ /after/ ~:require~
+
+*** src/triangulum/email.clj
+
+L7/12/29 - Please end comments with a period.
+
+L29 - Can you provide a list of what each input should include in the comments for this? In particular, knowing what to pass to ~content-type~ would be useful. (Even better would be an example).
+
+*** src/triangulum/errors.clj
+
+L5,10,19 - Please end comments with a period.
+
+L10 - Correct to: "Runs a function /and/ if it throws..."
+
+*** src/triangulum/utils.clj
+
+L10/16/23 - Please end comments with a period.
+
+L99 - Use the [[https://guide.clojure.style/#deprecated][^:deprecated]] metadata tag
+
+L100 - Use  ~[[triangulum.response/data-response]]~ (See https://guide.clojure.style/#document-references)
+
+L149 - Extra 's' in "Returns". Remove.
+
+*** src/triangulum/views.clj
+
+L16/26/49/73/116/124/188/221/229 - Please end comments with a period.
+
+L15/25/48 - Do these need to be public? I would lean towards making these fns private. L16 - Finish writing this comment and/or make this method private (~(defn- find-cljs-app-js ...)~).
+
+L105-111 - Having this hard-coded seems very brittle. What are your thoughts on moving this to a specific file (e.g. ~resources/public/js/vite-loader.js~) which could be configured (e.g. ~{:app {:dev-js-files ["/js/vite-loader.js"]}~)?
+
+L139 - Is this hard-coded for all Vite projects? Should this be able to be configured as well?
+
+L142 - I agree w/ Oliver that this could be moved to the JS client. Maybe we can come up with a standard path which could be reached from the client? (e.g. ~/announcement.json~)
+
+
+
+
+
+
+
