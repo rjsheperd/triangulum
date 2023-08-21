@@ -1,6 +1,10 @@
 default:
   image: clojure:latest
 
+before_script:
+  - mkdir -p $CI_PROJECT_DIR/.m2/repository
+  - export MAVEN_OPTS="-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
