@@ -1,6 +1,11 @@
 default:
   image: clojure:latest
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ~/.m2/repository
+
 stages:
   - build
   - deploy
