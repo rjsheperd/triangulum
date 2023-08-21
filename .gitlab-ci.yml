@@ -1,0 +1,21 @@
+default:
+  image: clojure:latest
+
+stages:
+  - build
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - clojure -X triangulum.packaging/build-jar :lib-name com.sig-gis/triangulum
+  artifacts:
+    paths:
+      - target
+
+deploy-job:
+  stage: deploy
+  dependencies:
+    - build-job
+  script:
+    - clojure -X triangulum.packaging/deploy-jar :lib-name com.sig-gis/triangulum
