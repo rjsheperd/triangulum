@@ -13,6 +13,7 @@ stages:
 build-job:
   stage: build
   script:
+    - clojure -Spath
     - clojure -X triangulum.packaging/build-jar :lib-name com.sig-gis/triangulum
   artifacts:
     paths:
