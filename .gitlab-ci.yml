@@ -4,7 +4,7 @@ default:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - $CI_PROJECT_DIR/.m2/repository
+    - $HOME/.m2/repository
 
 stages:
   - build
